@@ -47,7 +47,7 @@ async function connectDB() {
 }
 
 const ip = process.env.NODE_ENV === 'development' ? '192.168.0.146' : '0.0.0.0';
-server.listen(3000, ip, () => {
+server.listen(3000, () => {
   console.log(`Server is running on port ${ip}:3000`);
   connectDB();
 });
