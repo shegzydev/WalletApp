@@ -7,17 +7,20 @@ import authRoutes from './routes/auth.route.js';
 import transactionRoutes from './routes/transaction.route.js';
 import accountRoutes from './routes/account.route.js';
 import { app, server } from './lib/socket.js';
-
 import mongoose from 'mongoose';
 
+import path from 'path';
+
 dotenv.config();
+
+const __dirname = path.resolve();
 
 //Enable json parsing from request
 app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: ['http://192.168.0.146:5173', 'http://localhost:5173'],
+    origin: ['http://192.168.0.146:5173'],
     credentials: true,
   })
 );
@@ -29,7 +32,6 @@ app.use('/api/account', accountRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
   });
