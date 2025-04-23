@@ -1,4 +1,5 @@
 import {
+  ArrowDownCircle,
   ArrowUpCircle,
   Bell,
   BellDot,
@@ -45,13 +46,18 @@ const DashBoard = () => {
   return (
     <div className="bg-primary">
       {/* Header */}
-      <div className="d-flex flex-row justify-content-around pt-3 pb-3">
+      <div className="d-flex flex-row justify-content-between p-3">
         <div className="d-flex justify-content-around me-3">
           <img
             src={authUser?.profilePic || '/avatar.png'}
             alt=""
             className="rounded-circle"
-            style={{ width: '54px' }}
+            style={{
+              width: '54px',
+              height: '54px',
+              objectFit: 'cover',
+              border: '1px solid #aaa',
+            }}
           />
           <h5 className="fw-normal text-white mt-auto mb-auto ms-3">
             Hi, {authUser?.name}
@@ -77,8 +83,6 @@ const DashBoard = () => {
           <div className="p-3">
             <h3 className="text-white fw-normal fs-6">Available Balance</h3>
             <div className="mt-2 d-flex flex-column">
-              {/* <span className="mb-1 text-white">Amazon Platinum</span> */}
-              {/* <span className="mt-1 mb-1 text-white">4399 **** **** 1234</span> */}
               <div className="mt-1 d-flex flex-row justify-content-between text-white fs-3">
                 <span className="fw-semibold">
                   <span className="fw-light fs-6">₦</span>
@@ -109,11 +113,20 @@ const DashBoard = () => {
                           className="d-flex align-items-center bg-light rounded-4 mt-2 mb-2"
                           style={{ height: '70px', border: '1px solid #ccc4' }}
                         >
-                          <ArrowUpCircle
-                            size={'28px'}
-                            style={{ flexBasis: '12%' }}
-                            className="text-dark"
-                          ></ArrowUpCircle>
+                          {transaction.receiverAccount !==
+                          userAcct?.accountNumber ? (
+                            <ArrowUpCircle
+                              size={'28px'}
+                              style={{ flexBasis: '12%' }}
+                              className="text-dark"
+                            ></ArrowUpCircle>
+                          ) : (
+                            <ArrowDownCircle
+                              size={'28px'}
+                              style={{ flexBasis: '12%' }}
+                              className="text-dark"
+                            ></ArrowDownCircle>
+                          )}
                           <div
                             className="d-flex flex-column justify-content-evenly ps-1 pe-1 h-100"
                             style={{ flexBasis: '85%' }}
@@ -124,9 +137,15 @@ const DashBoard = () => {
                             >
                               <span>
                                 {transaction.transactionType}
-                                {' to '}
+                                {transaction.receiverAccount !==
+                                userAcct?.accountNumber
+                                  ? ' to '
+                                  : ' from '}
                                 <span className="fw-semibold">
-                                  {transaction.receiverAccount}
+                                  {transaction.receiverAccount !==
+                                  userAcct?.accountNumber
+                                    ? transaction.receiverAccount
+                                    : transaction.senderAccount}
                                 </span>
                               </span>
                               <span className="text-center fw-bold">

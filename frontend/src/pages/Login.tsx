@@ -17,7 +17,10 @@ const Login = () => {
   };
 
   return (
-    <div className="register-wrapper bg-primary">
+    <div
+      className="register-wrapper bg-primary m-auto"
+      style={{ width: 'min(450px, 100%)' }}
+    >
       {/* Header */}
       <h5
         style={{

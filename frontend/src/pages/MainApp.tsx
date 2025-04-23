@@ -64,7 +64,11 @@ const MainApp = () => {
   });
 
   const { current } = usePageStore();
-  return <>{Pages[current]}</>;
+  return (
+    <div className="d-flex justify-content-center align-items-center">
+      <div style={{ width: 'min(100%, 390px)' }}>{Pages[current]}</div>
+    </div>
+  );
 };
 
 export default MainApp;

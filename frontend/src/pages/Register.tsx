@@ -24,7 +24,10 @@ const Register = () => {
   };
 
   return (
-    <div className="register-wrapper bg-primary">
+    <div
+      className="register-wrapper bg-primary m-auto"
+      style={{ width: 'min(450px, 100%)' }}
+    >
       {/* Header */}
       <h5
         style={{
@@ -40,7 +43,7 @@ const Register = () => {
         Sign up
       </h5>
 
-      <div className="bg-light d-flex flex-column align-items-center rounded-top-5">
+      <div className="bg-white d-flex flex-column align-items-center rounded-top-5">
         <div style={{ paddingLeft: '25px' }} className="w-100 text-white py-2">
           <p className="mb-0 text-primary fw-bold fs-1">Welcome to us,</p>
           <p className="mb-0 fw-normal" style={{ color: 'black' }}>
@@ -99,7 +102,7 @@ const Register = () => {
             </span>
           </div>
 
-          <div className="form-check mb-3">
+          <div className="form-check mb-3 mt-4">
             <input
               style={{ width: '24px', height: '24px', marginRight: '10px' }}
               className="form-check-input"
@@ -116,7 +119,8 @@ const Register = () => {
           </div>
 
           <button
-            className="btn btn-primary w-100 rounded-3 fw-semibold mt-2 mb-2"
+            className="btn btn-primary w-100 rounded-3 fw-semibold mt-3 mb-3
+            "
             onClick={(e) => handleRegister(e)}
             disabled={!isChecked}
           >
