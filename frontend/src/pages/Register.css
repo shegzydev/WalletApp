@@ -1,0 +1,10 @@
+.logo-placeholder img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.register-wrapper input::placeholder {
+  color: #999;
+  font-size: 0.95rem;
+}

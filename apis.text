@@ -1,0 +1,21 @@
+🛡️ Basic Auth & User Handling
+POST /register – create a new user account
+POST /login – user login (return a token or session)
+GET /me – get current user info (using token)
+
+🏦 Account Management
+GET /account – get account details (balance, account number)
+POST /account/create – create a new wallet/bank account (if you support multiple)
+
+💸 Transactions
+POST /transfer – send money to another user
+GET /transactions – get transaction history
+GET /transaction/:id – view details of one transaction
+
+🔔 Basic Notifications (optional)
+GET /notifications – get alerts (like "Transfer Successful")
+POST /notify – (internal use) create a notification
+
+🔒 Extras (Optional)
+POST /change-pin or POST /verify-pin – for simple app-level security
+POST /logout – (if session/token cleanup is needed)
