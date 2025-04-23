@@ -32,7 +32,7 @@ app.use('/api/account', accountRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
   });
 }
@@ -46,8 +46,7 @@ async function connectDB() {
   }
 }
 
-const ip = process.env.NODE_ENV === 'development' ? '192.168.0.146' : '0.0.0.0';
 server.listen(3000, () => {
-  console.log(`Server is running on port ${ip}:3000`);
+  console.log(`Server is running on port 3000`);
   connectDB();
 });

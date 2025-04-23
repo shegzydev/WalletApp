@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post('/transfer', protectRoute, doTransfer);
 router.get('/getall', protectRoute, getTransactions);
-router.get('/get/:id', protectRoute, getTransaction);
+//router.get('/get', protectRoute, getTransaction);
 
 export default router;
