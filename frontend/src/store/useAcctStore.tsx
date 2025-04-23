@@ -53,6 +53,8 @@ interface AcctState {
   getHistory: () => Promise<void>;
   updateHistory: (newTransaction: transactionUpdate) => void;
   resetTransfer: () => void;
+
+  setBalance: (newBal: number) => void;
 }
 
 export const useAcctStore = create<AcctState>((set, get) => ({
@@ -109,6 +111,8 @@ export const useAcctStore = create<AcctState>((set, get) => ({
           transactionAmount: data.amount,
           transactionDetails: data.details,
           transactionType: 'transfer',
+          senderAccount: '',
+          createdAt: '',
         },
       });
       console.error(error);
@@ -135,9 +139,20 @@ export const useAcctStore = create<AcctState>((set, get) => ({
         ...get().transactionHistory,
         newTransaction.transaction,
       ],
-      userAcct: { ...get().userAcct, balance: newTransaction.accountBal },
     });
+    get().setBalance(newTransaction.accountBal);
     console.log(get().transactionHistory);
+  },
+
+  setBalance: (newBal) => {
+    const prev = get().userAcct;
+    if (!prev) return;
+    set({
+      userAcct: {
+        ...prev,
+        balance: newBal,
+      },
+    });
   },
 
   resetTransfer: () => {

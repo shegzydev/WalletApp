@@ -174,8 +174,9 @@ const Transfer = () => {
               onClick={(e) => handleTransfer(e)}
               disabled={
                 formData.amount <= 0 ||
-                formData.amount > userAcct?.balance ||
-                receiverName?.length < 0
+                (userAcct && formData.amount > userAcct.balance) ||
+                (receiverName !== null && receiverName.length < 0) ||
+                !receiverName
               }
             >
               Confirm

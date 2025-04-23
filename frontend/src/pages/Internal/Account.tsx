@@ -1,7 +1,7 @@
 import { Camera } from 'lucide-react';
 import TopBar from '../../components/TopBar';
 import { useAcctStore } from '../../store/useAcctStore';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import { useAuthStore } from '../../store/useAuthStore';
 
 interface imageData {
@@ -16,7 +16,8 @@ const Account = () => {
     Dispatch<SetStateAction<imageData>>
   ] = useState<imageData>({ imgData: null });
 
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
     const file = e.target.files[0];
     if (!file) return;
 
@@ -39,7 +40,11 @@ const Account = () => {
       <div className="d-flex flex-column align-items-center">
         <div className="position-relative mt-4">
           <img
-            src={selectedImg.imgData || authUser?.profilePic || '/avatar.png'}
+            src={
+              (selectedImg.imgData && String(selectedImg.imgData)) ||
+              authUser?.profilePic ||
+              '/avatar.png'
+            }
             alt=""
             className="rounded-circle"
             style={{
